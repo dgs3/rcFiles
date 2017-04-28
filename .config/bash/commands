@@ -1,0 +1,109 @@
+## Aliases
+# This file needs only be sourced for an interactive shell
+
+# Common aliases
+alias c='cdl'
+alias lsf='ls'
+alias ll='ls -ltrah'
+alias l='ls -ltrah'
+alias vimvim='vim ~/.vimrc'
+alias vv='vim ~/.vimrc'
+alias h='history'
+alias hg='history | grep'
+alias pg='ps -afux | grep'
+alias eg='env | grep'
+alias a='alias'
+alias ag='alias | grep'
+alias e='$EDITOR '
+alias g='grep'
+alias br='source ~/.bashrc'
+alias pg='ps -ax | grep'
+
+# config file management
+alias vimbash='vim ~/.bashrc'
+alias vb='vim ~/.bashrc'
+alias vc='vim ~/.config/bash/commands'
+alias vl='vim ~/.config/bash/local'
+
+
+# virtualenv aliases
+alias vh="source venv/bin/activate"
+alias vd="deactivate"
+alias dvh='vd;vh'
+alias venv_create="virtualenv venv"
+alias venv_create_3='virtualenv -p python3 venv'
+alias venv_here="source venv/bin/activate"
+alias venv_clean="rm -rf venv"
+
+# git shortcuts
+alias gc='git commit'
+alias gcam='git commit -a -m'
+alias gp='git push'
+alias gs='git status'
+alias ga='git add'
+alias gd='git diff'
+alias gb='git branch'
+alias gpom='git push origin master'
+alias gr='git remote'
+alias gcm='git checkout master'
+alias gcb='git checkout -b '
+alias gitall='git add -u && git commit -m'
+alias grv='git remote -v'
+alias gca='git commit --amend'
+
+# pip aliases
+alias p='pip'
+alias pi='pip install'
+alias pf='pip freeze'
+alias pr='pip install -r requirements.txt'
+alias pu='pip uninstall'
+
+# mongo aliases
+alias m='mongo'
+
+# tmux aliases
+alias ta='tmux attach'
+
+# Fab commands
+alias fs='fab -R staging'
+alias fp='fab -R prod'
+
+# SSH management
+alias socket-clean='rm -f ~/.ssh/sockets/*'
+
+#cd then ls
+cdl() {
+cd "$1"
+ls
+}
+
+# Makes a directory and cd into it afterwards
+mcd() {
+mkdir -pv $1
+cd $1
+}
+
+# scl shortcuts
+alias sclpy='scl enable python27 bash'
+
+# python setup env
+alias pypwd='export PYTHONPATH=`pwd`'
+
+# brew commands
+alias bup='brew update && brew upgrade'
+
+# deis commands
+alias deis-push='git commit deis master'
+alias dl='deis logs'
+
+# Change curl default so that it adds a newline to the end of all output
+alias curl="curl -w '\n'"
+
+# Set up the shell environment more or less automatically
+alias devel="export ENV='devel'"
+alias staging="export ENV='staging'"
+alias prod="export ENV='prod'"
+
+# Repeated python commands
+alias pv="python --version"
+

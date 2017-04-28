@@ -1,0 +1,49 @@
+### Interactive shell setup
+#
+# This config file contains settings and performs operations that are only appropriate if the connected session is a terminal
+# 
+# Example usage:
+# if [ -t 1 ] 
+# then 
+#     source interactive # this file
+# fi
+
+
+# Set up the command prompt
+
+HOSTCOLOR=$txtylw
+HOST_BK=
+CURSOR=$txtgrn
+CURSOR_BK=
+HOST="\h"
+
+# Attempt to display different prompt if on local server
+if [ "$HOSTNAME" == "Sams-MacBook-Pro.local" ]; then
+    HOSTCOLOR=$txtpur
+    HOST="local"
+elif [[ "$HOSTNAME" == *"staging"* ]]; then
+    HOST_BK=$bakylw
+    CURSOR_BK=$bakylw
+    HOSTCOLOR=$txtblk
+    CURSOR=$txtblk
+elif [[ "$HOSTNAME" == *"prod"* ]] || [[ "$HOSTNAME" == *"planet-1"* ]] || [[ "$HOSTNAME" == *"corp-1"* ]] || [[ "$HOSTNAME" == *"corp-2"* ]]; then
+    HOST_BK=$bakred
+    HOSTCOLOR=$txtylw
+    CURSOR_BK=$bakred
+    CURSOR=$txtylw
+fi
+
+# Sets the colors for the user
+user=`whoami`
+USER_BK=
+USER_FG=$txtcyn
+if [ "$user" == "root" ]; then
+    USER_BK=$bakgrn
+    USER_FG=$txtblk
+fi
+
+export PS1="$txtpur \t $txtcyn[$txtylw\w$txtcyn] $CURSOR$CURSOR_BK>$txtrst"
+
+# Make vim the default editor
+export EDITOR="vim"
+

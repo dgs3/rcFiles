@@ -1,0 +1,68 @@
+## Variables that are shared between fish and bash
+export EDITOR='vim'
+
+## setup macbook env
+# shell
+export SAM_HOME="/Users/wyattsam"
+export PACKAGE="$SAM_HOME/package"
+export CODE_HOME="$SAM_HOME/programs"
+
+
+# env - dev 
+export DEV_HOME="$SAM_HOME/projects"
+
+
+# home locations of various projects
+export PLANET_HOME="$DEV_HOME/planetmongo"
+export DJANGO_HOME="$DEV_HOME/djangoplanet"
+export JIRA_PLUGIN_HOME="$DEV_HOME/tengen-jira-plugin"
+export PORTAL_HOME="$DEV_HOME/portal"
+export CORP_HOME="$DEV_HOME/corp"
+export MICROSERVER_HOME="$DEV_HOME/microserver"
+export SEARCH_HOME="$DEV_HOME/mongo-search"
+export ADMIN_HOME="$DEV_HOME/admin"
+export AUTH_HOME="$DEV_HOME/login-service"
+export ELIOTDAP_HOME="$DEV_HOME/deploy-eliotdap"
+export LOGIN_HOME="$DEV_HOME/login"
+export MONGO_MAP_HOME="$DEV_HOME/mongo-map"
+export GITHOOK_HOME="$DEV_HOME/githook"
+export PYTHON_LIBS_HOME="$DEV_HOME/python-libs"
+export NAVBAR_HOME="$DEV_HOME/navbar"
+export HTTPS_DROPBOX_HOME="$DEV_HOME/https-dropbox"
+export TASKER_HOME="$DEV_HOME/tasker"
+export ACCOUNT_HOME="$DEV_HOME/accounts"
+export KEYBOARD_HOME="$DEV_HOME/qmk_firmware/keyboard/ergodox_ez/"
+export CROWD_SYNC_HOME="$DEV_HOME/crowd-ldap-sync"
+export PYCOMMON_HOME="$DEV_HOME/pycommon"
+export DW_HOME="$DEV_HOME/datawarehouse"
+export TESTER_HOME="$DEV_HOME/tester"
+export JAM_HOME="$DEV_HOME/jam"
+
+
+# python virtualenv names
+export MICROSERVER_ENV="micro"
+
+
+# configure mutt
+export MUTT_PRIMARY_EMAIL='sam.wyatt@10gen.com'
+export MUTT_FROM='sam.wyatt@mongodb.com'
+
+
+# aws s3
+export XGEN_BUCKET="s3://webassets-xgentools"
+export DOWNLOADS_BUCKET='s3://downloads.mongodb.org'
+
+
+# expose unix username through a shell variable
+export UNIX_USER='swyatt'
+
+
+# Groovy setup
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+
+# HISTIGNORE will cause the history command to stop printing commands that start with anything in the list
+export HISTIGNORE='ll:pwd:exit:h:vl:ag:br:clear:echo:'
+
+# The ip of my unix server known as 'redwolf'
+export REDWOLF_IP=10.4.122.202

@@ -1,0 +1,6 @@
+# Functions useful for sharing config between bash and fish
+
+# For managing variables in both fish and bash, create a 'setup' in both
+setup() {
+    export $1="$2"
+}

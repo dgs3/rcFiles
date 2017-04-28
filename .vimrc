@@ -1,12 +1,52 @@
-"" wyattsam vimrc MongoDB
+" Set shell to bash (currently trying fish)
+set shell=bash\ --norc
+
+" Vundle configuration
+"
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"Plugin 'scrooloose/syntastic.git'
+
+"Plugin 'scrooloose/nerdtree.git'
+
+"Plugin 'nvie/vim-flake8'
+"Plugin 'xolox/vim-misc'
+
+"Plugin 'xolox/vim-easytags'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line" wyattsam vimrc MongoDB
 
 " map ht to esc
-inoremap ue <Esc>
+"inoremap ue <Esc>
 "inoremap  <Esc>
+inoremap hh <Esc>
 "nnoremap kj <CR>
+inoremap jj <Esc>:w<CR>
 
 " Run pathogen
-" execute pathogen#infect()
+ "execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
@@ -64,6 +104,9 @@ filetype indent on
 "Always show current position
 set ruler
 
+" Show partial command on lower_right portion of screen
+set showcmd
+
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -99,7 +142,7 @@ set tm=500
 syntax enable
 
 colorscheme desert
-set background=dark
+"set background=light
 "set background=dark
 "colorscheme solarized
 
@@ -165,9 +208,6 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -388,7 +428,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>
 
 " Remap enter to add a new line below cursor without dropping into insert
 nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
 
 " Disable arrow keys for navigation
 noremap <Up> <C-w><Up>
@@ -399,31 +438,86 @@ noremap <Right> <C-w><Right>
 "" Functional key mappings
 
 " Use function keys to change light and dark background
-nnoremap <F2> :set background=light<CR>
-nnoremap <F3> :set background=dark<CR>
+"nnoremap <F2> :set background=light<CR>
+"nnoremap <F3> :set background=dark<CR>
+"nnoremap <F4> :colorscheme solarized<CR>
+nnoremap <F5> :colorscheme desert<CR>
+nnoremap <F6> :colorscheme evening<CR>
+nnoremap <F8> :colorscheme peachpuff<CR>
+nnoremap <F9> :colorscheme industry<CR>
 
-" Use function keys to create common LaTeX elements
-inoremap <F4> \section{}<Left>
-inoremap <F5> \subsection{}<Left>
-inoremap <F6> \subsubsection{}<Left>
-imap <F7> \begin{itemize}<CR><CR>\end{itemize}<Up><F8>
-inoremap <F8> \item 
-inoremap <F9> \documentclass{article}<CR>\begin{document}<CR><CR>\end{document}<Up>
-inoremap <F10> \emph{
-" Line break in LaTex
-inoremap <C-\> \\ 
-
-" Same as above, but for normal mode
-" Use function keys to create common LaTeX elements
-nnoremap <F4> i\section{}<Left>
-nnoremap <F5> i\subsection{}<Left>
-nnoremap <F6> i\subsubsection{}<Left>
-nnoremap <F7> i\begin{itemize}<CR><CR>\end{itemize}<Up><F8>
-nnoremap <F8> i\item 
-nnoremap <F9> i\documentclass{article}<CR>\begin{document}<CR><CR>\end{document}<Up>
-
-" Line break in LaTex
-nnoremap <C-\> i\\<ESC> 
 
 " Show line numbers
 set number
+
+
+" sets the statusline at the bottom of the file
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+" Fixes a python-related comment indenting problem
+inoremap # X#
+
+" vim-plug
+" https://github.com/junegunn/vim-plug
+" 
+" Manages vim plugins automatically
+call plug#begin('~/.vim/plugged')
+
+Plug 'keith/swift.vim'
+
+call plug#end()
+
+" Make vim use the system keyboard by default
+set clipboard=unnamed
+
+" If vim is being used to write a git commit message, then wrap at 72 chars
+au FileType gitcommit set tw=72
+
+" Test - word wrap at 80 for all files
+set tw=80
+
+" Syntastic - recommended beginning setup from
+" https://github.com/scrooloose/syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_mode_map = {
+" \"mode": "active",
+" \"passive_filetypes": ["html"]
+" \}
+
+map <F2>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR>/zzzz<cr><F3>
+map <F3>  :so tags.vim<CR>
+
+" Color tags
+hi Tag cterm=bold ctermfg=white
+
+" Backing up
+" Have vim write a backup...
+set backup
+" ... but have the extension of that file be .bak instead of default ~
+set backupext=.bak
+
+" A convienence for building helptags
+command Helpbuild helptags ~/.vim/doc
+
+" Map <Space> to 'down'
+map <space> <C-d>
+
+" Turn on the mouse
+set mouse=a
